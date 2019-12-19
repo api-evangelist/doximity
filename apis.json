@@ -1,0 +1,80 @@
+{
+    "name": "Doximity",
+    "description": "Over a million U.S. healthcare professionals as verified members. Largest network of MDs and other healthcare professionals. New to Doximity? Find your profile and join for free.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/2143-doximity.jpg",
+    "tags": [
+        "api provider",
+        "doctors",
+        "have api",
+        "healthcare",
+        "medical",
+        "networks"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/doximity\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Doximity",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/2143-doximity.jpg",
+            "humanURL": "https:\/\/www.doximity.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/doximity-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/doximity"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/doximity"
+        },
+        {
+            "type": "Developers",
+            "url": "http:\/\/developer.doximity.com\/"
+        },
+        {
+            "type": "Email",
+            "url": "amoncivaiz@doximity.com"
+        },
+        {
+            "type": "Email",
+            "url": "support@doximity.com"
+        },
+        {
+            "type": "Email",
+            "url": "pr@doximity.com"
+        },
+        {
+            "type": "Email",
+            "url": "bd@doximity.com"
+        },
+        {
+            "type": "Email",
+            "url": "security@doximity.com"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/doximity"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/doximity"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/www.doximity.com\/"
+        }
+    ]
+}
