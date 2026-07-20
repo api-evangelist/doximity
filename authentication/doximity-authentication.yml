@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.doximity.com/developers/documentation
+docs: https://www.doximity.com/developers/documentation
+discovery: https://auth.doximity.com/.well-known/openid-configuration
+summary:
+  types: [oauth2, openIdConnect]
+  oauth2_flows: [authorizationCode, refreshToken, deviceCode]
+  pkce: required
+  pkce_methods: [S256]
+  token_endpoint_auth_methods: [client_secret_basic]
+  id_token_signing_alg: [RS256]
+  response_types: ["code", "code id_token", "id_token"]
+schemes:
+- name: doximityOAuth
+  type: oauth2
+  sources: [openapi/doximity-oauth-openapi.yml]
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.doximity.com/oauth/authorize
+    tokenUrl: https://auth.doximity.com/oauth/token
+    refreshUrl: https://auth.doximity.com/oauth/token
+    scope_count: 21
+  grant_types:
+  - authorization_code
+  - refresh_token
+  - urn:ietf:params:oauth:grant-type:device_code
+  notes: >-
+    Authorization Code grant with mandatory PKCE (S256). Client authentication at the token
+    endpoint uses HTTP Basic (client_secret_basic). Access tokens are bearer tokens with a
+    typical 1800s lifetime; refresh tokens rotate access. The device_code grant supports
+    input-constrained clients.
+- name: openIdConnect
+  type: openIdConnect
+  openIdConnectUrl: https://auth.doximity.com/.well-known/openid-configuration
+  sources: [openapi/doximity-oauth-openapi.yml]
+  id_token_signing_alg: RS256
+  jwks_uri: https://auth.doximity.com/.well-known/jwks.json
+  userinfo_endpoint: https://auth.doximity.com/oauth/userinfo
