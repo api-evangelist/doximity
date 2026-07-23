@@ -1,0 +1,181 @@
+openapi: 3.1.0
+info:
+  title: Doximity 2.0 & OAuth OpenID Connect API
+  version: '1.0'
+  description: OAuth 2.0 authorization server and OpenID Connect provider that authenticates and identifies verified Doximity medical professionals against the Doximity medical database. Uses the Authorization Code grant with mandatory PKCE (S256), refresh tokens, and the device_code grant.
+  contact:
+    name: Doximity Business Development
+    email: bd@doximity.com
+    url: https://www.doximity.com/developers/documentation
+  termsOfService: https://www.doximity.com/terms-of-service
+servers:
+- url: https://auth.doximity.com
+  description: Production authorization server
+security:
+- doximityOAuth: []
+tags:
+- name: OpenID Connect
+  description: Identity and discovery endpoints
+paths:
+  /oauth/userinfo:
+    get:
+      operationId: userinfo
+      tags:
+      - OpenID Connect
+      summary: Fetch the authenticated member's identity claims
+      description: Returns the OpenID Connect claims permitted by the granted scopes. Requires a bearer access token.
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: UserInfo claims (JWT signed RS256 or JSON)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+        '401':
+          description: Missing or invalid access token
+        '403':
+          description: Insufficient scope
+        '429':
+          description: Rate limit exceeded
+  /oauth/logout:
+    get:
+      operationId: logout
+      tags:
+      - OpenID Connect
+      summary: End the Doximity session (RP-initiated logout)
+      parameters:
+      - name: id_token_hint
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: post_logout_redirect_uri
+        in: query
+        required: false
+        schema:
+          type: string
+          format: uri
+      - name: state
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '302':
+          description: Redirect to post_logout_redirect_uri
+  /oauth/session_state:
+    post:
+      operationId: sessionState
+      tags:
+      - OpenID Connect
+      summary: Check the OP session state (iframe-based)
+      responses:
+        '200':
+          description: Session state
+          content:
+            text/plain:
+              schema:
+                type: string
+                enum:
+                - changed
+                - unchanged
+                - error
+  /.well-known/openid-configuration:
+    get:
+      operationId: openidConfiguration
+      tags:
+      - OpenID Connect
+      summary: OpenID Connect discovery document
+      responses:
+        '200':
+          description: OIDC provider metadata
+  /.well-known/jwks.json:
+    get:
+      operationId: jwks
+      tags:
+      - OpenID Connect
+      summary: JSON Web Key Set for verifying id_token signatures
+      responses:
+        '200':
+          description: JWKS
+components:
+  schemas:
+    UserInfo:
+      type: object
+      description: OpenID Connect claims, gated by granted scopes.
+      properties:
+        sub:
+          type: string
+          description: Stable subject identifier (UUID v4)
+        name:
+          type: string
+        given_name:
+          type: string
+        family_name:
+          type: string
+        middle_name:
+          type: string
+        credentials:
+          type: string
+        profile_photo_url:
+          type: string
+          format: uri
+        profile_uuid:
+          type: string
+        specialty:
+          type: string
+        primary_email:
+          type: string
+          format: email
+        emails:
+          type: array
+          items:
+            type: string
+            format: email
+        permissions:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    doximityOAuth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.doximity.com/oauth/authorize
+          tokenUrl: https://auth.doximity.com/oauth/token
+          refreshUrl: https://auth.doximity.com/oauth/token
+          scopes:
+            openid: Enables the OpenID Connect id_token to be returned
+            search: Search the Doximity member directory
+            dialer: Access to Doximity Dialer functionality
+            docsgpt:access: Access to DocsGPT
+            hipaa:identified: Access identified data under HIPAA
+            jobs:read: Read job data
+            colleagues:read: Read the member's colleagues
+            colleagues:write: Modify the member's colleagues
+            login_context:inferred: Access inferred login context
+            sessions:linked: Access linked sessions
+            activities:read:cards: Read activity cards
+            activities:read:comments: Read activity comments
+            activities:read:likes: Read activity likes
+            activities:write:likes: Write activity likes
+            profile:read:basic: Read basic profile (name, credentials, specialty, photo)
+            profile:read:email: Read the member's email
+            profile:read:dialer_phone: Read the member's Dialer phone number
+            profile:read:experience: Read the member's experience
+            profile:read:office: Read the member's office information
+            profile:read:permissions: Read the member's permissions
+            profile:read:private_contact: Read the member's private contact information
+    openIdConnect:
+      type: openIdConnect
+      openIdConnectUrl: https://auth.doximity.com/.well-known/openid-configuration
+    clientBasic:
+      type: http
+      scheme: basic
+      description: HTTP Basic with client_id:client_secret (client_secret_basic)
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

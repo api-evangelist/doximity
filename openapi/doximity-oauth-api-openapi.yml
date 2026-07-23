@@ -1,0 +1,282 @@
+openapi: 3.1.0
+info:
+  title: Doximity 2.0 & OpenID Connect OAuth API
+  version: '1.0'
+  description: OAuth 2.0 authorization server and OpenID Connect provider that authenticates and identifies verified Doximity medical professionals against the Doximity medical database. Uses the Authorization Code grant with mandatory PKCE (S256), refresh tokens, and the device_code grant.
+  contact:
+    name: Doximity Business Development
+    email: bd@doximity.com
+    url: https://www.doximity.com/developers/documentation
+  termsOfService: https://www.doximity.com/terms-of-service
+servers:
+- url: https://auth.doximity.com
+  description: Production authorization server
+security:
+- doximityOAuth: []
+tags:
+- name: OAuth
+  description: OAuth 2.0 authorization and token endpoints
+paths:
+  /oauth/authorize:
+    get:
+      operationId: authorize
+      tags:
+      - OAuth
+      summary: Start the Authorization Code flow
+      description: Redirect the user's browser here to begin the Authorization Code grant with PKCE. On approval Doximity redirects back to redirect_uri with a short-lived authorization code and state.
+      parameters:
+      - name: client_id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Your application client id
+      - name: response_type
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - code
+          - code id_token
+          - id_token
+      - name: redirect_uri
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uri
+      - name: scope
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Space-delimited scopes; must include openid
+      - name: state
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Opaque CSRF-mitigation value echoed back
+      - name: code_challenge
+        in: query
+        required: true
+        schema:
+          type: string
+        description: PKCE code challenge
+      - name: code_challenge_method
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - S256
+      - name: nonce
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: prompt
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - none
+          - login
+          - consent
+          - create
+      - name: display
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - page
+          - popup
+      - name: response_mode
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - query
+          - fragment
+      - name: id_token_hint
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '302':
+          description: Redirect to redirect_uri with code+state on success, or error+error_description on denial.
+  /oauth/token:
+    post:
+      operationId: token
+      tags:
+      - OAuth
+      summary: Exchange an authorization code or refresh token for tokens
+      description: Token endpoint. Authenticate with HTTP Basic (client_secret_basic).
+      security:
+      - clientBasic: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - authorization_code
+                  - refresh_token
+                  - urn:ietf:params:oauth:grant-type:device_code
+                code:
+                  type: string
+                redirect_uri:
+                  type: string
+                  format: uri
+                code_verifier:
+                  type: string
+                  description: PKCE verifier
+                refresh_token:
+                  type: string
+                scope:
+                  type: string
+              required:
+              - grant_type
+      responses:
+        '200':
+          description: Token response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Invalid request / invalid_grant
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthError'
+        '401':
+          description: Invalid client credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthError'
+        '429':
+          description: Rate limit exceeded
+  /oauth/revoke:
+    post:
+      operationId: revoke
+      tags:
+      - OAuth
+      summary: Revoke an access or refresh token
+      security:
+      - clientBasic: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+              required:
+              - token
+      responses:
+        '200':
+          description: Token revoked
+  /api/v1/rate_limit:
+    get:
+      operationId: getRateLimit
+      tags:
+      - OAuth
+      summary: Inspect current rate-limit status
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Current rate limit window
+        '429':
+          description: Rate limit exceeded
+  /.well-known/oauth-authorization-server:
+    get:
+      operationId: oauthAuthorizationServer
+      tags:
+      - OAuth
+      summary: OAuth 2.0 Authorization Server Metadata (RFC 8414)
+      responses:
+        '200':
+          description: Authorization server metadata
+components:
+  schemas:
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: bearer
+        expires_in:
+          type: integer
+          example: 1800
+        refresh_token:
+          type: string
+        scope:
+          type: string
+        id_token:
+          type: string
+          description: Signed JWT (RS256)
+    OAuthError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: invalid_grant
+        error_description:
+          type: string
+  securitySchemes:
+    doximityOAuth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.doximity.com/oauth/authorize
+          tokenUrl: https://auth.doximity.com/oauth/token
+          refreshUrl: https://auth.doximity.com/oauth/token
+          scopes:
+            openid: Enables the OpenID Connect id_token to be returned
+            search: Search the Doximity member directory
+            dialer: Access to Doximity Dialer functionality
+            docsgpt:access: Access to DocsGPT
+            hipaa:identified: Access identified data under HIPAA
+            jobs:read: Read job data
+            colleagues:read: Read the member's colleagues
+            colleagues:write: Modify the member's colleagues
+            login_context:inferred: Access inferred login context
+            sessions:linked: Access linked sessions
+            activities:read:cards: Read activity cards
+            activities:read:comments: Read activity comments
+            activities:read:likes: Read activity likes
+            activities:write:likes: Write activity likes
+            profile:read:basic: Read basic profile (name, credentials, specialty, photo)
+            profile:read:email: Read the member's email
+            profile:read:dialer_phone: Read the member's Dialer phone number
+            profile:read:experience: Read the member's experience
+            profile:read:office: Read the member's office information
+            profile:read:permissions: Read the member's permissions
+            profile:read:private_contact: Read the member's private contact information
+    openIdConnect:
+      type: openIdConnect
+      openIdConnectUrl: https://auth.doximity.com/.well-known/openid-configuration
+    clientBasic:
+      type: http
+      scheme: basic
+      description: HTTP Basic with client_id:client_secret (client_secret_basic)
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
