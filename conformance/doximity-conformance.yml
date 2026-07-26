@@ -1,0 +1,35 @@
+generated: '2026-07-18'
+method: searched
+source: https://auth.doximity.com/.well-known/openid-configuration + https://www.doximity.com/about/security
+standards:
+- id: oauth2
+  conforms: true
+  evidence: Authorization Code grant with token/authorize/revoke endpoints; oauth-authorization-server metadata (RFC 8414) published.
+- id: oidc
+  conforms: true
+  evidence: openid-configuration discovery, id_token (RS256), userinfo endpoint, JWKS, claims_supported.
+- id: oauth2-pkce
+  conforms: true
+  evidence: PKCE (S256) required on the Authorization Code flow.
+- id: rfc8414-as-metadata
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server returns 200.
+- id: rfc8628-device-grant
+  conforms: true
+  evidence: grant_types_supported includes urn:ietf:params:oauth:grant-type:device_code.
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: /.well-known/security.txt published with Contact, Policy, Expires.
+- id: soc2-type2
+  conforms: true
+  evidence: SOC 2 Type 2 certified (https://www.doximity.com/about/security).
+- id: hipaa-hitech
+  conforms: true
+  evidence: HIPAA/HITECH certified; HIPAA-secure Dialer calling.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Uses OAuth 2.0 error format (error/error_description), not application/problem+json.
+- id: fhir-r4
+  conforms: false
+- id: scim2
+  conforms: false

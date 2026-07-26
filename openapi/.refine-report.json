@@ -1,0 +1,16 @@
+{
+  "provider": "doximity",
+  "sources": [
+    "doximity-oauth-api-openapi.yml",
+    "doximity-openid-connect-api-openapi.yml"
+  ],
+  "outputs": [
+    "doximity-oauth-api-openapi.yml",
+    "doximity-openid-connect-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

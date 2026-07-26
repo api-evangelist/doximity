@@ -1,0 +1,76 @@
+generated: '2026-07-18'
+method: searched
+source: https://auth.doximity.com/.well-known/openid-configuration
+docs: https://www.doximity.com/developers/documentation
+schemes:
+- name: doximityOAuth
+  type: oauth2
+  source: https://auth.doximity.com/.well-known/openid-configuration
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.doximity.com/oauth/authorize
+    tokenUrl: https://auth.doximity.com/oauth/token
+scopes:
+- scope: openid
+  description: Enables the OpenID Connect id_token to be returned. Default scope, always supported.
+  flows: [authorizationCode]
+- scope: profile:read:basic
+  description: Grants access to name, given_name, family_name, middle_name, credentials, profile_photo_url, and specialty.
+  flows: [authorizationCode]
+- scope: profile:read:email
+  description: Read the member's email address.
+  flows: [authorizationCode]
+- scope: profile:read:dialer_phone
+  description: Read the member's Doximity Dialer phone number.
+  flows: [authorizationCode]
+- scope: profile:read:experience
+  description: Read the member's professional experience.
+  flows: [authorizationCode]
+- scope: profile:read:office
+  description: Read the member's office information.
+  flows: [authorizationCode]
+- scope: profile:read:permissions
+  description: Read the member's permissions.
+  flows: [authorizationCode]
+- scope: profile:read:private_contact
+  description: Read the member's private contact information.
+  flows: [authorizationCode]
+- scope: search
+  description: Search the Doximity member directory.
+  flows: [authorizationCode]
+- scope: dialer
+  description: Access to Doximity Dialer functionality.
+  flows: [authorizationCode]
+- scope: docsgpt:access
+  description: Access to DocsGPT.
+  flows: [authorizationCode]
+- scope: hipaa:identified
+  description: Access identified data under HIPAA.
+  flows: [authorizationCode]
+- scope: jobs:read
+  description: Read job data.
+  flows: [authorizationCode]
+- scope: colleagues:read
+  description: Read the member's colleagues.
+  flows: [authorizationCode]
+- scope: colleagues:write
+  description: Modify the member's colleagues.
+  flows: [authorizationCode]
+- scope: login_context:inferred
+  description: Access inferred login context.
+  flows: [authorizationCode]
+- scope: sessions:linked
+  description: Access linked sessions.
+  flows: [authorizationCode]
+- scope: activities:read:cards
+  description: Read activity cards.
+  flows: [authorizationCode]
+- scope: activities:read:comments
+  description: Read activity comments.
+  flows: [authorizationCode]
+- scope: activities:read:likes
+  description: Read activity likes.
+  flows: [authorizationCode]
+- scope: activities:write:likes
+  description: Write activity likes.
+  flows: [authorizationCode]

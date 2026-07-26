@@ -1,0 +1,20 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.doximity.com/developers/documentation
+scope: OAuth applications (auth.doximity.com)
+rate_limits:
+- name: OAuth application hourly limit
+  limit_count: 5000
+  window: 1h
+  applies_to: All OAuth API requests per application
+signal:
+  style: response-headers
+  headers:
+  - name: X-Rate-Limit-Limit
+    meaning: Maximum requests permitted per hour
+  - name: X-Rate-Limit-Remaining
+    meaning: Requests remaining in the current window
+  - name: X-Rate-Limit-Reset
+    meaning: UTC epoch seconds when the window resets
+  over_limit_status: 429
+  status_endpoint: GET /api/v1/rate_limit

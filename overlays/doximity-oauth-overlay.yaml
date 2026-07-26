@@ -1,0 +1,25 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Doximity OAuth & OpenID Connect API
+  version: 1.0.0
+extends: openapi/doximity-oauth-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-rating: 3
+    x-apievangelist-enriched: '2026-07-18'
+    x-api-industry: healthtech
+    x-auth-model: oauth2-authorization-code-pkce
+- target: $.info
+  update:
+    x-artifacts:
+      scopes: scopes/doximity-scopes.yml
+      authentication: authentication/doximity-authentication.yml
+      conventions: conventions/doximity-conventions.yml
+      errors: errors/doximity-problem-types.yml
+      rate_limits: rate-limits/doximity-rate-limits.yml
+      well_known: well-known/doximity-well-known.yml
+- target: $.tags
+  update:
+  - name: Identity Verification
+    description: Verify member identity against the Doximity medical database.

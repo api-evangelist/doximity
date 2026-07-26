@@ -1,0 +1,12 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/doximity-oauth-openapi.yml
+skills:
+- file: doximity-verify-member.md
+  name: Verify and identify a Doximity member
+  api: openapi/doximity-oauth-openapi.yml
+  operations: [authorize, token, userinfo]
+- file: doximity-refresh-and-revoke.md
+  name: Refresh and revoke a Doximity session
+  api: openapi/doximity-oauth-openapi.yml
+  operations: [token, revoke, logout]

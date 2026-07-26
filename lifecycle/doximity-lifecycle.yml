@@ -1,0 +1,22 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.doximity.com/developers/documentation
+versioning:
+  scheme: uri-path (partial)
+  current: v1
+  notes: >-
+    The OAuth 2.0 / OpenID Connect surface is unversioned and standards-stable (endpoints under
+    /oauth/*). The rate-limit status resource is versioned at /api/v1/rate_limit.
+  docs: https://www.doximity.com/developers/documentation
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No formal deprecation policy or RFC 8594 Sunset/Deprecation header support is published.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+status_page_notes: >-
+  No public status page was found (status.doximity.com did not resolve). Operational health is
+  handled via the enterprise support channel and https://support.doximity.com.
+deprecated_operations: []

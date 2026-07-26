@@ -1,0 +1,40 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.doximity.com/developers/documentation
+authentication:
+  style: oauth2-authorization-code-pkce
+  token_type: Bearer (JWT access token)
+  client_auth: client_secret_basic (HTTP Basic at token endpoint)
+  pkce: required (S256)
+  ref: authentication/doximity-authentication.yml
+transport:
+  https_required: true
+  tls_min: TLSv1.2
+  ssl_validation: required
+idempotency:
+  supported: false
+  notes: >-
+    Doximity does not document an idempotency-key mechanism. OAuth/OIDC endpoints are either
+    idempotent by protocol semantics (authorize, userinfo, jwks) or single-use by design
+    (authorization_code exchange). No Idempotency-Key header is published.
+pagination:
+  supported: false
+  notes: The public identity API returns single-subject identity/profile documents; no list pagination is documented.
+versioning:
+  scheme: none-for-oauth
+  notes: >-
+    The OAuth/OIDC surface is unversioned and stable; the rate-limit status endpoint uses a URI
+    version prefix (/api/v1/rate_limit). See lifecycle/doximity-lifecycle.yml.
+error_envelope:
+  style: oauth2-error
+  fields: [error, error_description]
+  notes: >-
+    Errors follow the OAuth 2.0 error format (RFC 6749): a JSON body with error and
+    error_description on the token endpoint, or error/error_description query params on the
+    authorization callback. See errors/doximity-problem-types.yml.
+rate_limiting:
+  ref: rate-limits/doximity-rate-limits.yml
+  signal: X-Rate-Limit-Limit / X-Rate-Limit-Remaining / X-Rate-Limit-Reset headers; 429 over limit
+tracing:
+  request_id_header: null
+  notes: No request-id/tracing header is documented on the public identity API.

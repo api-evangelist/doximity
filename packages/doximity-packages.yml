@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/doximity + rubygems.org + Swift Package Manager
+packages:
+- language: ruby
+  registry: rubygems
+  name: omniauth-doximity-oauth2
+  url: https://rubygems.org/gems/omniauth-doximity-oauth2
+  repo: https://github.com/doximity/omniauth-doximity-oauth2
+  install: gem install omniauth-doximity-oauth2
+  version: 1.5.0
+  description: OmniAuth strategy for Doximity, supporting OIDC and using PKCE.
+  official: true
+- language: swift
+  registry: swift-package-manager
+  name: CallWithDoxDialer (DoximityDialerSDK)
+  url: https://github.com/doximity/CallWithDoxDialer
+  install: 'SPM: https://github.com/doximity/CallWithDoxDialer.git'
+  cocoapods: https://cocoapods.org/pods/CallWithDoxDialer
+  description: iOS SDK to initiate calls through the Doximity Dialer app (dialPhoneNumber on the shared DoximityDialer instance).
+  official: true
+- language: kotlin
+  registry: github
+  name: android-dialer-call-lib
+  url: https://github.com/doximity/android-dialer-call-lib
+  install: 'Add the library from https://github.com/doximity/android-dialer-call-lib'
+  description: Android SDK to initiate calls through the Doximity Dialer app.
+  official: true

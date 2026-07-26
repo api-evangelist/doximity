@@ -1,0 +1,26 @@
+generated: '2026-07-18'
+method: searched
+source: live fetch of /.well-known/ on auth.doximity.com and www.doximity.com
+hosts:
+- host: https://auth.doximity.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: doximity-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: doximity-oauth-authorization-server.json
+  - path: /.well-known/jwks.json
+    status: 200
+    file: doximity-jwks.json
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://www.doximity.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: doximity-security.txt
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404

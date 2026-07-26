@@ -1,0 +1,17 @@
+generated: '2026-07-18'
+method: searched
+probe: true
+source: https://www.doximity.com/about/security
+url: https://www.doximity.com/about/security
+certifications:
+- SOC 2 Type 2
+- SOC 3
+- HIPAA
+- HITECH
+evidence:
+- source: https://www.doximity.com/about/security
+  keywords:
+  - soc 2 type 2
+  - soc 3
+  - hipaa
+  - hitech

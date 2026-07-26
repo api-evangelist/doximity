@@ -1,0 +1,53 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/doximity-oauth-openapi.yml + https://www.doximity.com/developers/documentation
+format: oauth2-error
+envelope:
+  fields: [error, error_description]
+  notes: OAuth 2.0 (RFC 6749) error format; delivered as JSON on the token endpoint or as query params on the authorization callback.
+problems:
+- error: access_denied
+  where: authorization callback
+  title: The user denied your request
+  remediation: The member declined consent; re-initiate the flow only on explicit user action.
+  source_operation: openapi/doximity-oauth-openapi.yml#authorize
+- error: invalid_request
+  where: authorize / token
+  title: Missing or malformed required parameter
+  remediation: Verify client_id, redirect_uri, scope, state, code_challenge and code_challenge_method.
+  source_operation: openapi/doximity-oauth-openapi.yml#token
+- error: invalid_grant
+  status: 400
+  where: token
+  title: Invalid, expired, or already-used authorization code or refresh token
+  remediation: Restart the Authorization Code flow; codes are single-use and short-lived.
+  source_operation: openapi/doximity-oauth-openapi.yml#token
+- error: invalid_client
+  status: 401
+  where: token
+  title: Client authentication failed
+  remediation: Check the HTTP Basic client_id:client_secret credentials.
+  source_operation: openapi/doximity-oauth-openapi.yml#token
+- error: invalid_scope
+  where: authorize / token
+  title: Requested scope is invalid or unknown
+  remediation: Request only scopes advertised in the discovery document and granted to your app.
+  source_operation: openapi/doximity-oauth-openapi.yml#authorize
+- error: insufficient_scope
+  status: 403
+  where: userinfo
+  title: The access token lacks a scope required for the requested claims
+  remediation: Request the appropriate profile:read:* scope during authorization.
+  source_operation: openapi/doximity-oauth-openapi.yml#userinfo
+- error: invalid_token
+  status: 401
+  where: userinfo / api
+  title: Missing, expired, or revoked bearer access token
+  remediation: Refresh the access token via the refresh_token grant.
+  source_operation: openapi/doximity-oauth-openapi.yml#userinfo
+- error: rate_limit_exceeded
+  status: 429
+  where: all endpoints
+  title: Too Many Requests
+  remediation: Back off until X-Rate-Limit-Reset; the limit is 5000 requests/hour per application.
+  source_operation: openapi/doximity-oauth-openapi.yml#token

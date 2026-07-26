@@ -1,0 +1,41 @@
+# Doximity
+
+> Doximity is the leading digital platform for U.S. medical professionals. Its public developer surface is an OAuth 2.0 and OpenID Connect identity API at auth.doximity.com that verifies and identifies Doximity members and returns scope-gated profile claims, plus the Doximity Dialer SDKs for HIPAA-secure calling. SOC 2 Type 2 and HIPAA/HITECH certified.
+
+## APIs
+- [Doximity OAuth & OpenID Connect API](https://www.doximity.com/developers/documentation): Authenticate and identify verified medical professionals; Authorization Code + PKCE, refresh_token, and device_code grants.
+
+## Specs
+- [OpenAPI (OAuth/OIDC)](openapi/doximity-oauth-openapi.yml)
+- [OpenID Connect discovery](well-known/doximity-openid-configuration.json)
+- [OAuth Authorization Server metadata](well-known/doximity-oauth-authorization-server.json)
+
+## Authentication & Scopes
+- [Authentication profile](authentication/doximity-authentication.yml)
+- [OAuth scopes (21)](scopes/doximity-scopes.yml)
+
+## Conventions & Errors
+- [API conventions](conventions/doximity-conventions.yml)
+- [Error catalog](errors/doximity-problem-types.yml)
+- [Rate limits](rate-limits/doximity-rate-limits.yml)
+- [Lifecycle](lifecycle/doximity-lifecycle.yml)
+- [Data model](data-model/doximity-data-model.yml)
+
+## SDKs & Packages
+- [omniauth-doximity-oauth2 (Ruby)](https://rubygems.org/gems/omniauth-doximity-oauth2)
+- [CallWithDoxDialer (iOS/Swift)](https://github.com/doximity/CallWithDoxDialer)
+- [android-dialer-call-lib (Android/Kotlin)](https://github.com/doximity/android-dialer-call-lib)
+
+## Agent
+- [Agent skills index](skills/_index.yml)
+- [MCP server (candidate)](mcp/doximity-mcp.yml)
+- [Agentic access contracts](agentic-access/doximity-agentic-access.yml)
+
+## Docs
+- [Developer home](https://www.doximity.com/developers/home)
+- [Documentation](https://www.doximity.com/developers/documentation)
+- [API signup](https://www.doximity.com/developers/api_signup)
+- [Security & compliance](https://www.doximity.com/about/security)
+- [Terms of service](https://www.doximity.com/terms-of-service)
+- [Privacy policy](https://www.doximity.com/clinicians/privacy)
+- [GitHub organization](https://github.com/doximity)

@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/doximity-oauth-openapi.yml + https://auth.doximity.com/.well-known/openid-configuration
+entities:
+- name: Member
+  description: A verified Doximity medical professional (the OIDC subject).
+  id_field: sub
+  id_format: UUID v4
+  fields:
+  - {name: sub, type: string, description: Stable subject identifier}
+  - {name: profile_uuid, type: string}
+  - {name: name, type: string}
+  - {name: given_name, type: string}
+  - {name: family_name, type: string}
+  - {name: middle_name, type: string}
+  - {name: credentials, type: string}
+  - {name: specialty, type: string}
+  - {name: profile_photo_url, type: string}
+  - {name: primary_email, type: string}
+  - {name: emails, type: array}
+  - {name: permissions, type: array}
+  relationships:
+  - {kind: has_many, target: Email, via: emails}
+  - {kind: has_many, target: Permission, via: permissions}
+  - {kind: has_many, target: Colleague, via: colleagues}
+- name: Token
+  description: OAuth access / refresh / id tokens issued for a Member session.
+  fields:
+  - {name: access_token, type: string}
+  - {name: refresh_token, type: string}
+  - {name: id_token, type: string, description: Signed JWT (RS256)}
+  - {name: scope, type: string}
+  - {name: expires_in, type: integer}
+  relationships:
+  - {kind: belongs_to, target: Member, via: sub}
+- name: Colleague
+  description: Another Member connected to the subject (colleagues:read/write scopes).
+  relationships:
+  - {kind: belongs_to, target: Member, via: sub}

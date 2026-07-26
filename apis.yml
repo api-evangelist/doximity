@@ -1,8 +1,16 @@
 aid: doximity
 name: Doximity
-description: 'Doximity is a company surfaced as a portfolio company of emergence-capital, threshold-ventures
-  and added to the API Evangelist network as a stub for enrichment. Sector: healthtech. This profile is
-  a lead awaiting the enrichment pipeline.'
+description: 'Doximity is the leading digital platform for U.S. medical professionals, used by
+  the majority of physicians and a large share of nurse practitioners and physician assistants. Its
+  public developer surface is an OAuth 2.0 and OpenID Connect identity API hosted at auth.doximity.com
+  that lets third-party applications verify and identify Doximity members against the Doximity medical
+  database, request a curated set of profile claims (name, credentials, specialty, email, office, and
+  more), and reduce registration friction. Doximity also ships the Doximity Dialer SDKs for iOS and
+  Android so partner apps can place HIPAA-secure calls that mask the caller''s personal number, plus a
+  Share Button and Registration integration. Authentication uses the Authorization Code grant with
+  mandatory PKCE, refresh tokens, and device_code, and the platform is SOC 2 Type 2 and HIPAA/HITECH
+  certified. This profile was enriched by the API Evangelist pipeline from Doximity''s public developer
+  documentation and OpenID Connect discovery metadata.'
 url: https://raw.githubusercontent.com/api-evangelist/doximity/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,13 +19,66 @@ x-backed-by:
 - threshold-ventures
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://www.doximity.com/img/logos/doximity-logo.png
 tags:
 - Company
 - Healthtech
-apis: []
+- Identity
+- OAuth
+- OpenID Connect
+- Authentication
+- Physician Network
+- Healthcare
+- SSO
+- Verification
+apis:
+- aid: doximity:doximity-oauth-api
+  name: Doximity OAuth API
+  description: OAuth 2.0 authorization and token endpoints
+  humanURL: https://www.doximity.com/developers/documentation
+  baseURL: https://auth.doximity.com
+  tags:
+  - OAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/doximity-oauth-api-openapi.yml
+  - type: Documentation
+    url: https://www.doximity.com/developers/documentation
+  - type: Authentication
+    url: authentication/doximity-authentication.yml
+  - type: OAuthScopes
+    url: scopes/doximity-scopes.yml
+- aid: doximity:doximity-openid-connect-api
+  name: Doximity OpenID Connect API
+  description: Identity and discovery endpoints
+  humanURL: https://www.doximity.com/developers/documentation
+  baseURL: https://auth.doximity.com
+  tags:
+  - OpenID Connect
+  properties:
+  - type: OpenAPI
+    url: openapi/doximity-openid-connect-api-openapi.yml
+  - type: Documentation
+    url: https://www.doximity.com/developers/documentation
+  - type: Authentication
+    url: authentication/doximity-authentication.yml
+  - type: OAuthScopes
+    url: scopes/doximity-scopes.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -26,3 +87,70 @@ maintainers:
 common:
 - type: Website
   url: https://www.doximity.com
+- type: DeveloperPortal
+  url: https://www.doximity.com/developers/home
+- type: Documentation
+  url: https://www.doximity.com/developers/documentation
+- type: GettingStarted
+  url: https://www.doximity.com/developers/documentation
+- type: SignUp
+  url: https://www.doximity.com/developers/api_signup
+- type: GitHubOrganization
+  url: https://github.com/doximity
+- type: Support
+  url: https://support.doximity.com/hc/en-us
+- type: TermsOfService
+  url: https://www.doximity.com/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.doximity.com/clinicians/privacy
+- type: Security
+  url: https://www.doximity.com/about/security
+- type: Compliance
+  url: https://www.doximity.com/about/security
+- type: OpenAPI
+  url: openapi/doximity-oauth-openapi.yml
+- type: Authentication
+  url: authentication/doximity-authentication.yml
+- type: OAuthScopes
+  url: scopes/doximity-scopes.yml
+- type: WellKnown
+  url: well-known/doximity-well-known.yml
+- type: SecurityTxt
+  url: well-known/doximity-security.txt
+- type: Packages
+  url: packages/doximity-packages.yml
+- type: SDKs
+  url: packages/doximity-packages.yml
+- type: MCPServer
+  url: mcp/doximity-mcp.yml
+- type: LLMsTxt
+  url: llms/doximity-llms.txt
+- type: Overlay
+  url: overlays/doximity-oauth-overlay.yaml
+- type: Conformance
+  url: conformance/doximity-conformance.yml
+- type: ErrorCatalog
+  url: errors/doximity-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/doximity-lifecycle.yml
+- type: Conventions
+  url: conventions/doximity-conventions.yml
+- type: DataModel
+  url: data-model/doximity-data-model.yml
+- type: RateLimits
+  url: rate-limits/doximity-rate-limits.yml
+- type: VulnerabilityDisclosure
+  url: security/doximity-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/doximity-trust-center.yml
+- type: DomainSecurity
+  url: security/doximity-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/doximity-agentic-access.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
