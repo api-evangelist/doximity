@@ -108,7 +108,7 @@ common:
 - type: Compliance
   url: https://www.doximity.com/about/security
 - type: OpenAPI
-  url: openapi/doximity-oauth-openapi.yml
+  url: openapi/_original/doximity-oauth-openapi.yml
 - type: Authentication
   url: authentication/doximity-authentication.yml
 - type: OAuthScopes
