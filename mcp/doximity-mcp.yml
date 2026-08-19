@@ -2,11 +2,9 @@ generated: '2026-07-18'
 method: derived
 status: candidate
 source: openapi/doximity-oauth-openapi.yml
-notes: >-
-  No official hosted/remote Doximity MCP server was found (searched docs, npm @modelcontextprotocol,
-  and MCP registries). The following is a derived candidate tool list, one tool per documented
-  OAuth/OIDC operation, to seed a future server. Doximity does publish a docsgpt:access scope but
-  no MCP endpoint.
+notes: No official hosted/remote Doximity MCP server was found (searched docs, npm @modelcontextprotocol,
+  and MCP registries). The following is a derived candidate tool list, one tool per documented OAuth/OIDC
+  operation, to seed a future server. Doximity does publish a docsgpt:access scope but no MCP endpoint.
 server:
   name: doximity
   transport: http
@@ -26,3 +24,9 @@ tools:
 - name: get_openid_configuration
   description: Retrieve the OpenID Connect discovery metadata.
   source_operation: openapi/doximity-oauth-openapi.yml#openidConfiguration
+deployment:
+  mode: none
+  verified: derived
+  tools: 5
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,572 @@
+{
+  "item": [
+    {
+      "id": "c172dbe2-fe1a-41f2-acec-4185f4be0e7f",
+      "name": "OpenID Connect",
+      "description": {
+        "content": "Identity and discovery endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4f489e42-b730-40d2-88e4-20c166b09eb2",
+          "name": "Fetch the authenticated member's identity claims",
+          "request": {
+            "name": "Fetch the authenticated member's identity claims",
+            "description": {
+              "content": "Returns the OpenID Connect claims permitted by the granted scopes. Requires a bearer access token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth",
+                "userinfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5aaa9620-5234-4072-901f-4bfd10c14739",
+              "name": "UserInfo claims (JWT signed RS256 or JSON)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "userinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sub\": \"string\",\n  \"name\": \"string\",\n  \"given_name\": \"string\",\n  \"family_name\": \"string\",\n  \"middle_name\": \"string\",\n  \"credentials\": \"string\",\n  \"profile_photo_url\": \"http://cVjyEULUgOfyVbvHoSxmOh.pdbtYDwB9qmyBqjzZvNp\",\n  \"profile_uuid\": \"string\",\n  \"specialty\": \"string\",\n  \"primary_email\": \"jFLnIU@NHaBEcOyBWiSQUCkasxVwiiQzueDoq.fer\",\n  \"emails\": [\n    \"zAIn7AJ@ZCCoMRvhWjzgilKd.nkfb\",\n    \"KLe0bSivyv52WJA@ih.gsyi\"\n  ],\n  \"permissions\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbf17867-6fd1-4124-bd5f-5862ec5bc9d2",
+              "name": "Missing or invalid access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "userinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4f7b2821-ee3d-4968-821e-8af7e42b06ca",
+              "name": "Insufficient scope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "userinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "49f9c89c-26ac-4fc2-94e2-4d7939f8814b",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "userinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5942507-be1a-48ff-993d-a63937639fa9",
+          "name": "End the Doximity session (RP-initiated logout)",
+          "request": {
+            "name": "End the Doximity session (RP-initiated logout)",
+            "description": {},
+            "url": {
+              "path": [
+                "oauth",
+                "logout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id_token_hint",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "post_logout_redirect_uri",
+                  "value": "<uri>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97fdf564-2ab6-4b48-830c-fdb0d1b1e293",
+              "name": "Redirect to post_logout_redirect_uri",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "logout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id_token_hint",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "post_logout_redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2cc5951e-e142-44d4-bd65-10b0adf16d6a",
+          "name": "Check the OP session state (iframe-based)",
+          "request": {
+            "name": "Check the OP session state (iframe-based)",
+            "description": {},
+            "url": {
+              "path": [
+                "oauth",
+                "session_state"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "656fe006-9610-49f5-a04f-e09ee827fc92",
+              "name": "Session state",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "session_state"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "error",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49dc5f8f-55f8-469c-a5b5-e7d11e03684b",
+          "name": "OpenID Connect discovery document",
+          "request": {
+            "name": "OpenID Connect discovery document",
+            "description": {},
+            "url": {
+              "path": [
+                ".well-known",
+                "openid-configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e859a374-feee-4f3e-aa24-087e4b066009",
+              "name": "OIDC provider metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ".well-known",
+                    "openid-configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "715c2c68-3816-4dae-a49f-43eb11d76428",
+          "name": "JSON Web Key Set for verifying id_token signatures",
+          "request": {
+            "name": "JSON Web Key Set for verifying id_token signatures",
+            "description": {},
+            "url": {
+              "path": [
+                ".well-known",
+                "jwks.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e337b86-233d-4dec-82db-0114fcef094d",
+              "name": "JWKS",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ".well-known",
+                    "jwks.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://auth.doximity.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "openid search dialer docsgpt:access hipaa:identified jobs:read colleagues:read colleagues:write login_context:inferred sessions:linked activities:read:cards activities:read:comments activities:read:likes activities:write:likes profile:read:basic profile:read:email profile:read:dialer_phone profile:read:experience profile:read:office profile:read:permissions profile:read:private_contact"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://auth.doximity.com/oauth/token"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.doximity.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.doximity.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0564f323-d3f0-493b-822b-62b41901cb41",
+    "name": "Doximity 2.0 & OAuth OpenID Connect API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OAuth 2.0 authorization server and OpenID Connect provider that authenticates and identifies verified Doximity medical professionals against the Doximity medical database. Uses the Authorization Code grant with mandatory PKCE (S256), refresh tokens, and the device_code grant.\n\nContact Support:\n Name: Doximity Business Development\n Email: bd@doximity.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Doximity 2.0 & OpenID Connect OAuth API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.doximity.com/oauth/authorize",
+      "accessTokenUrl": "https://auth.doximity.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start the Authorization Code flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auth.doximity.com/oauth/authorize",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your application client id"
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Space-delimited scopes; must include openid"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Opaque CSRF-mitigation value echoed back"
+              },
+              {
+                "name": "code_challenge",
+                "value": "",
+                "type": "query",
+                "description": "PKCE code challenge"
+              },
+              {
+                "name": "code_challenge_method",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nonce",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "prompt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "display",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "response_mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id_token_hint",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Redirect the user's browser here to begin the Authorization Code grant with PKCE. On approval Doximity redirects back to redirect_uri with a short-lived authorization code and state."
+        },
+        {
+          "info": {
+            "name": "Exchange an authorization code or refresh token for tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://auth.doximity.com/oauth/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "code",
+                  "value": ""
+                },
+                {
+                  "name": "redirect_uri",
+                  "value": ""
+                },
+                {
+                  "name": "code_verifier",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Token endpoint. Authenticate with HTTP Basic (client_secret_basic)."
+        },
+        {
+          "info": {
+            "name": "Revoke an access or refresh token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://auth.doximity.com/oauth/revoke",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "token",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Revoke an access or refresh token"
+        },
+        {
+          "info": {
+            "name": "Inspect current rate-limit status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auth.doximity.com/api/v1/rate_limit",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Inspect current rate-limit status"
+        },
+        {
+          "info": {
+            "name": "OAuth 2.0 Authorization Server Metadata (RFC 8414)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auth.doximity.com/.well-known/oauth-authorization-server"
+          },
+          "docs": "OAuth 2.0 Authorization Server Metadata (RFC 8414)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

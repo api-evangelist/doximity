@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Doximity 2.0 & OAuth OpenID Connect API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.doximity.com/oauth/authorize",
+      "accessTokenUrl": "https://auth.doximity.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OpenID Connect",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch the authenticated member's identity claims",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auth.doximity.com/oauth/userinfo",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the OpenID Connect claims permitted by the granted scopes. Requires a bearer access token."
+        },
+        {
+          "info": {
+            "name": "End the Doximity session (RP-initiated logout)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auth.doximity.com/oauth/logout",
+            "params": [
+              {
+                "name": "id_token_hint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "post_logout_redirect_uri",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "End the Doximity session (RP-initiated logout)"
+        },
+        {
+          "info": {
+            "name": "Check the OP session state (iframe-based)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://auth.doximity.com/oauth/session_state"
+          },
+          "docs": "Check the OP session state (iframe-based)"
+        },
+        {
+          "info": {
+            "name": "OpenID Connect discovery document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auth.doximity.com/.well-known/openid-configuration"
+          },
+          "docs": "OpenID Connect discovery document"
+        },
+        {
+          "info": {
+            "name": "JSON Web Key Set for verifying id_token signatures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auth.doximity.com/.well-known/jwks.json"
+          },
+          "docs": "JSON Web Key Set for verifying id_token signatures"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
