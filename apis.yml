@@ -37,6 +37,16 @@ modified: '2026-07-18'
 image: https://www.doximity.com/img/logos/doximity-logo.png
 tags:
 - Company
+- Health Tech
+- Identity
+- Authentication
+- OpenID Connect
+- Physician Network
+- Healthcare
+- SSO
+- Verification
+tags_raw:
+- Company
 - Healthtech
 - Identity
 - OAuth
@@ -53,6 +63,8 @@ apis:
   humanURL: https://www.doximity.com/developers/documentation
   baseURL: https://auth.doximity.com
   tags:
+  - Authentication
+  tags_raw:
   - OAuth
   properties:
   - type: OpenAPI
