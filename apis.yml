@@ -69,24 +69,6 @@ tags_raw:
 - SSO
 - Verification
 apis:
-- aid: doximity:doximity-oauth-api
-  name: Doximity OAuth API
-  description: OAuth 2.0 authorization and token endpoints
-  humanURL: https://www.doximity.com/developers/documentation
-  baseURL: https://auth.doximity.com
-  tags:
-  - Authentication
-  tags_raw:
-  - OAuth
-  properties:
-  - type: OpenAPI
-    url: openapi/doximity-oauth-api-openapi.yml
-  - type: Documentation
-    url: https://www.doximity.com/developers/documentation
-  - type: Authentication
-    url: authentication/doximity-authentication.yml
-  - type: OAuthScopes
-    url: scopes/doximity-scopes.yml
 - aid: doximity:doximity-openid-connect-api
   name: Doximity OpenID Connect API
   description: Identity and discovery endpoints
@@ -97,6 +79,22 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/doximity-openid-connect-api-openapi.yml
+  - type: Documentation
+    url: https://www.doximity.com/developers/documentation
+  - type: Authentication
+    url: authentication/doximity-authentication.yml
+  - type: OAuthScopes
+    url: scopes/doximity-scopes.yml
+- aid: doximity:doximity-oauth-api
+  name: Doximity O Auth API
+  description: OAuth 2.0 authorization and token endpoints
+  humanURL: https://www.doximity.com/developers/documentation
+  baseURL: https://auth.doximity.com
+  tags:
+  - OAuth
+  properties:
+  - type: OpenAPI
+    url: openapi/doximity-oauth-api-openapi.yml
   - type: Documentation
     url: https://www.doximity.com/developers/documentation
   - type: Authentication
