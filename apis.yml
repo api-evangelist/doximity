@@ -91,6 +91,8 @@ apis:
   humanURL: https://www.doximity.com/developers/documentation
   baseURL: https://auth.doximity.com
   tags:
+  - Authentication
+  tags_raw:
   - OAuth
   properties:
   - type: OpenAPI
