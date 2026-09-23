@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Doximity 2.0 & OAuth OpenID Connect API
+  title: Doximity OAuth 2.0 OpenID Connect API
   version: '1.0'
   description: OAuth 2.0 authorization server and OpenID Connect provider that authenticates and identifies verified Doximity medical professionals against the Doximity medical database. Uses the Authorization Code grant with mandatory PKCE (S256), refresh tokens, and the device_code grant.
   contact:
