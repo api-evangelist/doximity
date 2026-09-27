@@ -7,19 +7,16 @@
     "doximity-oauth-api-openapi.yml",
     "doximity-openid-connect-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "doximity-oauth-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "superseded outputs removed: doximity-o-auth-api-openapi.yml",
-    "apis.yml register: written (+1 apis, 2 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
-    "doximity-o-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "doximity-oauth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "doximity-openid-connect-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }
