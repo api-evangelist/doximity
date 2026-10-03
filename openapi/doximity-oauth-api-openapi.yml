@@ -213,6 +213,14 @@ paths:
           description: Authorization server metadata
 components:
   schemas:
+    OAuthError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: invalid_grant
+        error_description:
+          type: string
     TokenResponse:
       type: object
       properties:
@@ -231,14 +239,6 @@ components:
         id_token:
           type: string
           description: Signed JWT (RS256)
-    OAuthError:
-      type: object
-      properties:
-        error:
-          type: string
-          example: invalid_grant
-        error_description:
-          type: string
   securitySchemes:
     doximityOAuth:
       type: oauth2
