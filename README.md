@@ -64,6 +64,136 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Doximity is a company surfaced as a portfolio company of emergence-capital, threshold-ventures and added to the API Evangelist network as a stub for enrichment. Sector: healthtech. This profile is a lead awaiting the enrichment pipeline.
+Doximity is the leading digital platform for U.S. medical professionals, used by the majority of physicians and a large share of nurse practitioners and physician assistants. Its public developer surface is an OAuth 2.0 and OpenID Connect identity API hosted at auth.doximity.com that lets third-party applications verify and identify Doximity members against the Doximity medical database, request a curated set of profile claims (name, credentials, specialty, email, office, and more), and reduce registration friction. Doximity also ships the Doximity Dialer SDKs for iOS and Android so partner apps can place HIPAA-secure calls that mask the caller's personal number, plus a Share Button and Registration integration. Authentication uses the Authorization Code grant with mandatory PKCE, refresh tokens, and device_code, and the platform is SOC 2 Type 2 and HIPAA/HITECH certified. This profile was enriched by the API Evangelist pipeline from Doximity's public developer documentation and OpenID Connect discovery metadata.
 
-Backed by: emergence-capital, threshold-ventures — https://www.doximity.com
+**Areas:** Company · Health Tech · Identity · Authentication · OpenID Connect · Physician Network · Healthcare · SSO · Verification
+
+## Doximity on APIs.io
+
+Everything profiled for Doximity is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/doximity/](https://apis.io/providers/doximity/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Doximity OpenID Connect API](https://apis.io/apis/doximity/doximity-openid-connect-api/) — Identity and discovery endpoints
+- [Doximity O Auth API](https://apis.io/apis/doximity/doximity-oauth-api/) — OAuth 2.0 authorization and token endpoints
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [doximity](https://apis.io/servers/doximity/doximity/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Doximity Agentic Access](https://apis.io/agentic-access/doximity/doximity-agentic-access/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [Doximity 2.0 & OpenID Connect OAuth API](https://apis.io/collections/doximity/open-doximity-oauth-api/)
+- [Doximity 2.0 & OAuth OpenID Connect API](https://apis.io/collections/doximity/open-doximity-openid-connect-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Doximity Oauth Overlay](https://apis.io/overlays/doximity/doximity-oauth-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Doximity Authentication](https://apis.io/security/doximity/doximity-authentication/)
+- [Doximity Domain Security](https://apis.io/security/doximity/doximity-domain-security/)
+- [Doximity Trust Center](https://apis.io/security/doximity/doximity-trust-center/)
+- [Doximity Vulnerability Disclosure](https://apis.io/security/doximity/doximity-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Doximity Scopes](https://apis.io/scopes/doximity/doximity-scopes/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Doximity Rate Limits](https://apis.io/rate-limits/doximity/doximity-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.doximity.com)
+- [Documentation](https://www.doximity.com/developers/documentation)
+- [Getting started](https://www.doximity.com/developers/documentation)
+- [Sign up](https://www.doximity.com/developers/api_signup)
+- [Support](https://support.doximity.com/hc/en-us)
+- [Blog](https://blog.doximity.com/updates)
+- [Security](https://www.doximity.com/about/security)
+- [Compliance](https://www.doximity.com/about/security)
+- [Terms of service](https://www.doximity.com/terms-of-service)
+- [Privacy policy](https://www.doximity.com/clinicians/privacy)
+- [GitHub](https://github.com/doximity)
+
+## API Evangelist rating
+
+**Kin Score 50.6** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 42.2 |
+| Contract governance | 18.2 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 50.0 |
+
+**Agent readiness 36.1** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 45.3** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/doximity/](https://apis.io/providers/doximity/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Doximity: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/doximity/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
